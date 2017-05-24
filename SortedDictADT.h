@@ -1,5 +1,5 @@
 // File: SortedDictADT.h
-// Sorted dictionary adt header file 
+// Sorted dictionary adt header file
 // @author: Stephen Greene (sgreene570)
 
 
@@ -39,14 +39,14 @@ SortedDictADT createDict(int (*cmp)(const void *a, const void *b));
 // @param void *key : Key for dict entry
 // @param void *value : Value for associated key
 // @return SortedDictEntry : Pointer to dict entry
-SortedDictEntry createEntry(void *key, void *value)
+SortedDictEntry createEntry(void *key, void *value);
 
 
 // addEntry()
 // Add a SortedDictEntry to the passed SortedDictADT
 // @param SortedDictADT dict: The dict to add the entry to
 // @param SortedDictEntry entry : The entry to add
-void addEntry(SortedDictADT dict, SortedDictEntry entry)
+void addEntry(SortedDictADT dict, SortedDictEntry entry);
 
 
 #endif
