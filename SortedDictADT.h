@@ -11,27 +11,27 @@
 // void *key : Key entry for dictionary entry
 // void *value : Value associated with given key
 // struct SortedDictEntry_s *next : Linked list behavior to point to next entry
-typedef SortedDictEntry_s{
+typedef struct SortedDictEntry_s{
     void *key;
     void *value;
     struct SortedDictEntry_s *next;
-}*SortedDictEntry;
+}SortedDictEntry;
 
 
 // Struct SortedDictADT
 // int (*cmp)(const void *a, const void *b) : comparator function pointer
 // SortedDictEntry head : Head node of the dictionary
-typedef SortedDictADT_s{
+typedef struct SortedDictADT_s{
     int (*cmp)(const void *a, const void *b);
-    SortedDictEntry head;
-}*SortedDictADT;
+    SortedDictEntry *head;
+}SortedDictADT;
 
 
 // createDict()
 // Creates and returns a SortedDictADT
 // @param int (*cmp)(const void *a, const void *b) : comparator function
 // @return SortedDictADT : Blank SortedDictADT instance
-SortedDictADT createDict(int (*cmp)(const void *a, const void *b));
+SortedDictADT *createDict(int (*cmp)(const void *a, const void *b));
 
 
 // createEntry()
@@ -39,7 +39,7 @@ SortedDictADT createDict(int (*cmp)(const void *a, const void *b));
 // @param void *key : Key for dict entry
 // @param void *value : Value for associated key
 // @return SortedDictEntry : Pointer to dict entry
-SortedDictEntry createEntry(void *key, void *value);
+SortedDictEntry *createEntry(void *key, void *value);
 
 
 // addEntry()
