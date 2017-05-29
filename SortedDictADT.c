@@ -15,10 +15,38 @@ SortedDictADT *createDict(int (*cmp)(const void *a, const void *b)){
 
 
 SortedDictEntry *createEntry(void *key, void *value){
-    return NULL;
+    SortedDictEntry *entry = calloc(1, sizeof(SortedDictEntry));
+    entry->key = key;
+    entry->value = value;
+    return entry;
 }
 
 
-void addEntry(SortedDictADT dict, SortedDictEntry entry){
-    return;
+void addEntry(SortedDictADT *dict, SortedDictEntry *head, SortedDictEntry *entry){
+    if(!dict->head){
+        dict->head = entry;
+    }else{
+        int cmp = dict->cmp(entry, head);
+        if(cmp < 0){
+            // Copy the contents of the head pointer
+            SortedDictEntry *copy = createEntry(head->key, head->value);
+            copy->next = head->next;
+            // Overide the values of the current head pointer
+            // This is to avoid changing the address of the current head
+            // so anything pointing to head will not break.
+            head->key = entry->key;
+            head->value = entry->value;
+            head->next = copy;
+            // Free entry since its contents have been copied elsewhere
+            // Note: deleting entry contents would break the head pointer
+            // since key/value were not deep copied.
+            free(entry);
+        }else{
+            if(!(head->next)){
+                head->next = entry;
+            }else{
+                addEntry(dict, head->next, entry);
+            }
+        }
+    }
 }

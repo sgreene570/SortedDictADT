@@ -45,8 +45,9 @@ SortedDictEntry *createEntry(void *key, void *value);
 // addEntry()
 // Add a SortedDictEntry to the passed SortedDictADT
 // @param SortedDictADT dict: The dict to add the entry to
+// @param SortedDictEntry head : The current working head of the dict (For recursion)
 // @param SortedDictEntry entry : The entry to add
-void addEntry(SortedDictADT dict, SortedDictEntry entry);
+void addEntry(SortedDictADT *dict, SortedDictEntry *head, SortedDictEntry *entry);
 
 
 #endif
