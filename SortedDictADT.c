@@ -26,7 +26,7 @@ void addEntry(SortedDictADT *dict, SortedDictEntry *head, SortedDictEntry *entry
     if(!dict->head){
         dict->head = entry;
     }else{
-        int cmp = dict->cmp(entry, head);
+        int cmp = dict->cmp(entry->key, head->key);
         if(cmp < 0){
             // Copy the contents of the head pointer
             SortedDictEntry *copy = createEntry(head->key, head->value);
@@ -41,7 +41,7 @@ void addEntry(SortedDictADT *dict, SortedDictEntry *head, SortedDictEntry *entry
             // Note: deleting entry contents would break the head pointer
             // since key/value were not deep copied.
             free(entry);
-        }else{
+        }else if(cmp > 0){
             if(!(head->next)){
                 head->next = entry;
             }else{
@@ -49,4 +49,19 @@ void addEntry(SortedDictADT *dict, SortedDictEntry *head, SortedDictEntry *entry
             }
         }
     }
+}
+
+
+void *getValue(SortedDictADT *dict, void *key){
+    SortedDictEntry *entry = dict->head;
+    // Iterate through entire linked list.
+    // TODO: Implement binary searching?
+    while(entry){
+        if(dict->cmp(key, entry->key) == 1){
+            return entry->value;
+        }else{
+            entry = entry->next;
+        }
+    }
+    return NULL;
 }
