@@ -57,11 +57,26 @@ void *getValue(SortedDictADT *dict, void *key){
     // Iterate through entire linked list.
     // TODO: Implement binary searching?
     while(entry){
-        if(dict->cmp(key, entry->key) == 1){
+        if(dict->cmp(key, entry->key) == 0){
             return entry->value;
         }else{
             entry = entry->next;
         }
     }
     return NULL;
+}
+
+
+// Frees all dynamic memory used by the dict.
+// Assumes that SortedDictEntrys in the dict also use dynamic memory for key/value
+void destroyDict(SortedDictADT *dict){
+    SortedDictEntry *curr = dict->head;
+    while(curr){
+        free(curr->key);
+        free(curr->value);
+        SortedDictEntry *temp = curr->next;
+        free(curr);
+        curr = temp;
+    }
+    free(dict);
 }
