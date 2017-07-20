@@ -4,6 +4,7 @@
 
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "SortedDictADT.h"
 
 
@@ -72,8 +73,9 @@ void *getValue(SortedDictADT *dict, void *key){
 void destroyDict(SortedDictADT *dict){
     SortedDictEntry *curr = dict->head;
     while(curr){
-        free(curr->key);
-        free(curr->value);
+        // uncomment these free calls when using generics (currently testing with strings)
+        //free(curr->key);
+        //free(curr->value);
         SortedDictEntry *temp = curr->next;
         free(curr);
         curr = temp;
