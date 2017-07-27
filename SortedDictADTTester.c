@@ -20,10 +20,12 @@ int main(int argc, char *argv[]){
     addEntry(dict, dict->head, createEntry("testing", "123"));
     addEntry(dict, dict->head, createEntry("123", "TESTING"));
     addEntry(dict, dict->head, createEntry("loop", "adoop"));
-    // Test dictionary retrieval
+    // Test dictionary value retrieval
     printf("%s\n", (char *)getValue(dict, "loop"));
     printf("%s\n", (char *)getValue(dict, "testing"));
     printf("%s\n", (char *)getValue(dict, "123"));
+    // Test dictionary key retrieval
+    printf("%s\n", (char *)getKey(dict, "adoop"));
 
     // Test cleanup function
     destroyDict(dict);

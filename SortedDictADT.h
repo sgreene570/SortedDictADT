@@ -62,6 +62,14 @@ void addEntry(SortedDictADT *dict, SortedDictEntry *head, SortedDictEntry *entry
 void *getValue(SortedDictADT *dict, void *key);
 
 
+// getKey()
+// Finds the key associated with a value.
+// @param SortedDictADT *dict :  The dict to get a key from
+// @param void *value : The value associated with the desired key
+// Returns null if value is not found in the dict.
+void *getKey(SortedDictADT *dict, void *value);
+
+
 // destoryDict()
 // Free all dynamic memory created for SortedDictADT
 // @param SortedDictADT *dict : Dict to destroy

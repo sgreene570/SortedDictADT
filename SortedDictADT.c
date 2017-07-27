@@ -68,6 +68,20 @@ void *getValue(SortedDictADT *dict, void *key){
 }
 
 
+void *getKey(SortedDictADT *dict, void *value){
+    SortedDictEntry *entry = dict->head;
+    // Iterate through the linked list to find the key.
+    while(entry){
+        if(dict->cmp(value, entry->value) == 0){
+            return entry->key;
+        }else{
+            entry = entry->next;
+        }
+    }
+    return NULL;
+}
+
+
 // Frees all dynamic memory used by the dict.
 // Assumes that SortedDictEntrys in the dict also use dynamic memory for key/value
 void destroyDict(SortedDictADT *dict){
